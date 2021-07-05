@@ -1,4 +1,5 @@
 import pandas as pd 
+import dataframe_image as dfi
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import mean_squared_error, classification_report
@@ -40,7 +41,10 @@ mse = mean_squared_error(y_test, predictions)
 # Report RMSE
 rmse = np.sqrt(mse)
 # Report Classification error report
-error_report = classification_report(y_test, predictions)
+error_report = classification_report(y_test, predictions, output_dict=True)
+error_report_df = pd.DataFrame(error_report).transpose()
+dfi.export(error_report_df, 'error_report_snap.png')
+
 # Write scores to a file
 with open("metrics.txt", 'w') as outfile:
          outfile.write("Training variance explained: %2.1f%%\n" % train_score)
