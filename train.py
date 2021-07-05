@@ -1,5 +1,4 @@
-import pandas as pd 
-import dataframe_image as dfi
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import mean_squared_error, classification_report
@@ -43,15 +42,18 @@ rmse = np.sqrt(mse)
 # Report Classification error report
 error_report = classification_report(y_test, predictions, output_dict=True)
 error_report_df = pd.DataFrame(error_report).transpose()
-dfi.export(error_report_df, 'error_report_snap.png')
+error_report_html = error_report_df.to_html()
 
 # Write scores to a file
 with open("metrics.txt", 'w') as outfile:
          outfile.write("Training variance explained: %2.1f%%\n" % train_score)
          outfile.write("Test variance explained: %2.1f%%\n" % test_score)
          outfile.write("Root Mean Squared Error: %2.1f%%\n" % rmse)
-         outfile.write("Classification Error Report:\n %s\n" %error_report)
 
+# write html to file
+error_report_html_file = open("error_report_html.html", "w")
+error_report_html_file.write(error_report_html)
+error_report_html_file.close()
 ##########################################
 ##### PLOT FEATURE IMPORTANCE ############
 ##########################################
