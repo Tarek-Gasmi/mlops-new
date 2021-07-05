@@ -72,7 +72,7 @@ f = open("metrics_2.txt", "r")
   
 # insert the texts in pdf
 for x in f:
-    pdf.cell(200, 50, txt = x, ln = 1, align = 'C')
+    pdf.cell(200, 20, txt = x, ln = 1, align = 'C')
    
 # save the pdf with name .pdf
 pdf.output("metrics_2.pdf")
