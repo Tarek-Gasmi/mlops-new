@@ -28,7 +28,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 #################################
 
 # Fit a model on the train section
-model = RandomForestClassifier(n_estimators=50, max_depth=7, random_state=seed)
+model = RandomForestClassifier(n_estimators=150, max_depth=7, random_state=seed, oob_score=True )
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 # Report training set score
@@ -40,20 +40,21 @@ mse = mean_squared_error(y_test, predictions)
 # Report RMSE
 rmse = np.sqrt(mse)
 # Report Classification error report
-error_report = classification_report(y_test, predictions, output_dict=True)
-error_report_df = pd.DataFrame(error_report).transpose()
-error_report_html = error_report_df.to_html()
+error_report = classification_report(y_test, predictions)
+
+
 
 # Write scores to a file
-with open("metrics.txt", 'w') as outfile:
+with open("metrics_1.txt", 'w') as outfile:
          outfile.write("Training variance explained: %2.1f%%\n" % train_score)
          outfile.write("Test variance explained: %2.1f%%\n" % test_score)
          outfile.write("Root Mean Squared Error: %2.1f%%\n" % rmse)
+         outfile.write("Out-of-bag Score: %2.1f%%\n" % model.oob_score_)
 
-# write html to file
-error_report_html_file = open("error_report_html.html", "w")
-error_report_html_file.write(error_report_html)
-error_report_html_file.close()
+with open("metrics_2.txt", 'w') as outfile:
+         outfile.write(error_report)
+
+
 ##########################################
 ##### PLOT FEATURE IMPORTANCE ############
 ##########################################
