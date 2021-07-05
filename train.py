@@ -43,15 +43,15 @@ mse = mean_squared_error(y_test, predictions)
 rmse = np.sqrt(mse)
 # Report Classification error report
 error_report = classification_report(y_test, predictions)
-
+# Report OOB score
+oob = model.oob_score_*100
 
 
 # Write scores to a file
 with open("metrics_1.txt", 'w') as outfile:
-         outfile.write("Training variance explained: %2.1f%%\n" train_score)
-         outfile.write("Test variance explained: %2.1f%%\n" test_score)
-         outfile.write("Root Mean Squared Error: %2.1f%%\n" rmse)
-         outfile.write("Out-of-bag Score: %2.1f%%\n" model.oob_score_)
+         outfile.write("Training variance explained: %2.1f%%\n" % train_score)
+         outfile.write("Test variance explained: %2.1f%%\n" % test_score)
+         outfile.write("Out-of-bag Score: %2.1f%%\n" % model.oob_score_)
 
 with open("metrics_2.txt", 'w') as outfile:
          outfile.write(error_report)
