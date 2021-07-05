@@ -15,7 +15,7 @@ jobs:
           python train.py
           
           echo "## Model metrics" > report.md
-          cml-publish error_report_snap.png --md >> report.md
+          cml-publish error_report_html.html --md >> report.md
           
           echo "## Data viz" >> report.md
           cml-publish error_report_html.html --md >> report.md
