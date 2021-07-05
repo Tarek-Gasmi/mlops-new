@@ -6,6 +6,7 @@ from sklearn.metrics import mean_squared_error, classification_report
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+
 # Set random seed
 seed = 42
 
@@ -74,7 +75,7 @@ for x in f:
     pdf.cell(200, 10, txt = x, ln = 1, align = 'C')
    
 # save the pdf with name .pdf
-pdf.output("metrics_2.pdf")   
+pdf.output("metrics_2.pdf")
 
 ##########################################
 ##### PLOT FEATURE IMPORTANCE ############
