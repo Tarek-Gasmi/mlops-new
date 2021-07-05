@@ -34,9 +34,9 @@ model = RandomForestClassifier(n_estimators=150, max_depth=7, random_state=seed,
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 # Report training set score
-train_score = model.score(X_train, y_train) * 100
+train_score = model.score(X_train, y_train)
 # Report test set score
-test_score = model.score(X_test, y_test) * 100
+test_score = model.score(X_test, y_test)
 # Report RMSE
 mse = mean_squared_error(y_test, predictions)
 # Report RMSE
@@ -48,10 +48,10 @@ error_report = classification_report(y_test, predictions)
 
 # Write scores to a file
 with open("metrics_1.txt", 'w') as outfile:
-         outfile.write("Training variance explained: %2.1f%%\n" % train_score)
-         outfile.write("Test variance explained: %2.1f%%\n" % test_score)
-         outfile.write("Root Mean Squared Error: %2.1f%%\n" % rmse)
-         outfile.write("Out-of-bag Score: %2.1f%%\n" % model.oob_score_)
+         outfile.write("Training variance explained: %2.1f%%\n" train_score)
+         outfile.write("Test variance explained: %2.1f%%\n" test_score)
+         outfile.write("Root Mean Squared Error: %2.1f%%\n" rmse)
+         outfile.write("Out-of-bag Score: %2.1f%%\n" model.oob_score_)
 
 with open("metrics_2.txt", 'w') as outfile:
          outfile.write(error_report)
@@ -72,7 +72,7 @@ f = open("metrics_2.txt", "r")
   
 # insert the texts in pdf
 for x in f:
-    pdf.cell(200, 10, txt = x, ln = 1, align = 'C')
+    pdf.cell(50, 10, txt = x, ln = 1, align = 'C')
    
 # save the pdf with name .pdf
 pdf.output("metrics_2.pdf")
