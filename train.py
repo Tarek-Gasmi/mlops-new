@@ -1,4 +1,5 @@
 import pandas as pd
+from fpdf import FPDF
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import mean_squared_error, classification_report
@@ -54,6 +55,26 @@ with open("metrics_1.txt", 'w') as outfile:
 with open("metrics_2.txt", 'w') as outfile:
          outfile.write(error_report)
 
+# save FPDF() class into 
+# a variable pdf
+pdf = FPDF()   
+   
+# Add a page
+pdf.add_page()
+   
+# set style and size of font 
+# that you want in the pdf
+pdf.set_font("Arial", size = 15)
+  
+# open the text file in read mode
+f = open("metrics_2.txt", "r")
+  
+# insert the texts in pdf
+for x in f:
+    pdf.cell(200, 10, txt = x, ln = 1, align = 'C')
+   
+# save the pdf with name .pdf
+pdf.output("metrics_2.pdf")   
 
 ##########################################
 ##### PLOT FEATURE IMPORTANCE ############
