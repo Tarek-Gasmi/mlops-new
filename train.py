@@ -65,14 +65,14 @@ pdf.add_page()
    
 # set style and size of font 
 # that you want in the pdf
-pdf.set_font("Arial", size = 20)
+pdf.set_font("Arial", size = 25)
   
 # open the text file in read mode
 f = open("metrics_2.txt", "r")
   
 # insert the texts in pdf
 for x in f:
-    pdf.cell(200, 30, txt = x, ln = 1, align = 'C')
+    pdf.cell(200, 30, txt = x, ln = 1, align = 'L')
    
 # save the pdf with name .pdf
 pdf.output("metrics_2.pdf")
