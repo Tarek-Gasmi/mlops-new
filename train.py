@@ -13,7 +13,7 @@ seed = 42
 ################################
 
 # Load in the data
-df = pd.read_csv("wine_quality.csv")
+df = pd.read_csv("product_quality.csv")
 # Create Classification version of target variable
 df['goodquality'] = [1 if x >= 6 else 0 for x in df['quality']]
 # Separate feature variables and target variable
